@@ -30,8 +30,9 @@ class _WelecomeScreenState extends State<WelecomeScreen> {
                     height: 200,
                     width: 200,
                   ),
-                  Text(
+                  const Text(
                     'See Whats Happing in the world',
+                    textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -47,7 +48,7 @@ class _WelecomeScreenState extends State<WelecomeScreen> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                     ),
-                    child: Text(
+                    child: const Text(
                       'LOG IN',
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),

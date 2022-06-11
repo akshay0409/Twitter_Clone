@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:twitter_clone/Constants/Constants.dart';
 
+import '../Services/TwitterModel.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
-
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  late String _email;
-  late String _password;
-
+  late String userName;
+  TwitterModel twitterModel = TwitterModel();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,18 +36,10 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             TextField(
               decoration: InputDecoration(
-                hintText: 'Enter Your Email',
+                hintText: 'Enter Your Username',
               ),
               onChanged: (value) {
-                _email = value;
-              },
-            ),
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Enter Password',
-              ),
-              onChanged: (value) {
-                _password = value;
+                userName = value;
               },
             ),
             SizedBox(
@@ -66,7 +58,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 'LOG IN',
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
-              onPressed: () {
+              onPressed: () async {
+                var userData = await twitterModel.getUserName(userName);
+                var userId= userData["data"]["id"];
+                print(userId);
                 //   bool isValid = await AuthService.login(_email, _password);
                 //   if (isValid) {
                 //     Navigator.pop(context);
